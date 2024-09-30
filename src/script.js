@@ -1,116 +1,34 @@
-// console.log('page is working');
+// script.js
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const ratingCard = document.getElementById('rating-card');
-//     const ratingNumbers = document.querySelectorAll('.rating-number');
-//     const submitBtn = document.getElementById('submit-btn');
-//     const thankYouCard = document.getElementById('thank-you-card');
-//     const userRating = document.getElementById('user-rating');
-//     let selectedRating = null;
+document.addEventListener("DOMContentLoaded", function () {
+    const ratingNumbers = document.querySelectorAll(".rating-number");
+    const submitBtn = document.getElementById("submit-btn");
+    const userRating = document.getElementById("user-rating");
+    const ratingCard = document.getElementById("rating-card");
+    const thankYouCard = document.getElementById("thank-you-card");
 
-//     // Handle rating selection
-//     ratingNumbers.forEach(rating => {
-//         rating.addEventListener('click', (e) => {
-//             // Clear previous selection
-//             // ratingNumbers.forEach(r => r.classList.remove('bg-orange-500', 'text-white'));
-//             ratingNumbers.forEach(r => {
-//                 r.classList.remove('bg-orange-500', 'text-white')
-//                 // Testing
-//                 console.log('Working')
-//             });
-
-
-//             // Highlight selected rating
-//             e.target.classList.add('bg-orange-500', 'text-white');
-
-
-//             selectedRating = e.target.dataset.rating;
-
-
-//             console.log("Selected Rating:", selectedRating); 
-//         });
-
-
-//     });
-
-
-// // ratingNumbers.forEach(rating => {} );
-// // ratingNumbers.forEach(rating);
-// // function rating () {};
-
-
-// // ratingNumbers.forEach(r => {
-// //     console.log(r); // এখানে প্রতিটি DOM এলিমেন্টকে দেখানো হবে
-// //   });
-  
-
-// });
-
-// document.addEventListener('DOMContentLoaded', () =>{
-//     const ratingNumbers = document.querySelectorAll('.rating-number');
-
-//     ratingNumbers.forEach(rating => {
-
-//         rating.addEventListener('click', (e) => {
-//             // ratingNumbers.forEach(r => r.classList.remove('bg-orange-500', 'text-white'));
-//             // console.log('working 1');
-
-//             ratingNumbers.forEach(r => {
-//                 r.classList.remove('bg-orange-500', 'text-white')
-//                 // Testing
-//                 console.log('Working')
-//             });
-                
-//         // hilight
-//         e.target.classList.add('bg-orange-500', 'text-white');
-//         console.log('working 2');
-
-//         // selcted rating
-//         selectedRating = e.target.dataset.rating;
-        
-//         console.log(selectedRating, 'working 3');
-
-
-//     });
-
-
-//     });
-
-// });
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const ratingNumbers = document.querySelectorAll('.rating-number');
-    const submitButton = document.getElementById('submit-btn');
-    const ratingCard = document.getElementById('rating-card');
-    const thankYouCard = document.getElementById('thank-you-card');
-    const userRating = document.getElementById('user-rating');
     let selectedRating = null;
 
-    ratingNumbers.forEach(rating => {
-        rating.addEventListener('click', (e) => {
-            ratingNumbers.forEach(r =>{
-                r.classList.remove('bg-orange-500', 'text-white');
-                console.log('Working 1');
-            });
-
-            // hilight selected
-            e.target.classList.add('bg-orange-500', 'text-white');
-            console.log('Working 2');
-
-            // selectedRating
-            selectedRating = e.target.dataset.rating;
-            console.log(selectedRating);
+    // Add event listeners to each rating number
+    ratingNumbers.forEach((rating) => {
+        rating.addEventListener("click", function () {
+            // Remove the highlight from all rating numbers
+            ratingNumbers.forEach((r) => r.classList.remove("bg-orange-500"));
+            // Add the highlight to the selected rating number
+            this.classList.add("bg-orange-500");
+            selectedRating = this.getAttribute("data-rating");
         });
     });
 
-    
-
-
-
-
-
-
+    // Handle submit button click
+    submitBtn.addEventListener("click", function () {
+        if (selectedRating) {
+            // Show thank you card
+            userRating.textContent = selectedRating;
+            ratingCard.classList.add("hidden");
+            thankYouCard.classList.remove("hidden");
+        } else {
+            alert("Please select a rating before submitting!");
+        }
+    });
 });
-
-
